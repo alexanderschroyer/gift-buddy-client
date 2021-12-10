@@ -30,7 +30,8 @@ export const NavBar = () => {
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        <span class="material-icons" style={{ fontSize: '1.75em' }} > home
+                        </span>
                     </NavIcon>
                     <NavText>
                         Home
@@ -60,7 +61,10 @@ export const NavBar = () => {
                             Bar Chart
                     <NavItem>
                     <button onClick={() => history.push(`/recipients/edit/list`)}> Edit </button>
-                </NavItem>
+                </NavItem> 
+                {/* set state variable = true edit button sets from false to true
+                
+                ternary at top wraps nav bar if true render edit nav bar if false render this navbar*/}
                         </NavText>
                     </NavItem>
                 </NavItem>

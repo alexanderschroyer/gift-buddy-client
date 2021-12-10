@@ -18,7 +18,9 @@ export const EditNavBar = () => {
 
 
     return (
+        <div className="SideNav">
         <SideNav
+        expanded="True"
             onSelect={(selected) => {
                 // Add your code here
                 if(selected === "home"){
@@ -46,8 +48,9 @@ export const EditNavBar = () => {
                     </NavText>
                         {recipients.map(recipient => {
                             return <NavItem key={`recipient--${recipient.id}`}>
-                                <NavText key={`recipient-${recipient.id}`}>{recipient.name}<button onClick={() => { deleteRecipient(recipient.id) }}>Delete</button></NavText>
-                                {/* <button onClick={() => { deleteRecipient(recipient.id) }}>Delete</button> */}
+                                <NavText key={`recipient-${recipient.id}`}>{recipient.name}
+                                <button onClick={() => history.push(`/recipients/edit/recipient/${recipient.id}`)}> Edit </button>
+                                <button onClick={() => { deleteRecipient(recipient.id) }}>Delete</button></NavText>
                             </NavItem>
                         })}
                     <NavItem eventKey="charts/linechart">
@@ -64,5 +67,6 @@ export const EditNavBar = () => {
                 </NavItem>
             </SideNav.Nav>
         </SideNav>
+        </div>
     );
 };

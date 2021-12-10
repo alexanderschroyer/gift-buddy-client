@@ -10,8 +10,13 @@ export const EditRecipient = () => {
 
     useEffect(
         () => {
-            return fetch(`http://localhost:8000/recipients`)
-        }
+            return fetch(`http://localhost:8000/recipients/${recipientId}`)
+            .then(response => response.json())
+            .then((data) => {
+                updateRecipient(data)
+            })
+        },
+        [recipientId]
     )
 
 
