@@ -2,13 +2,14 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Interests } from "./interests/InterestList";
 import { EditNavBar } from "./nav/EditNavBar";
-import CheckboxForm from "./recipients/idk";
+import { EditRecipient } from "./recipients/EditRecipient";
 import { RecipientForm } from "./recipients/NewRecipientForm";
 import { RecipientList } from "./recipients/RecipientList";
+import "./ApplicationViews.css"
 
 export const ApplicationViews = () => {
     return (
-        <>
+        <div id="main--container">
             <main
                 style={{
                     margin: "5rem 2rem",
@@ -27,14 +28,10 @@ export const ApplicationViews = () => {
                     <RecipientForm />
                 </Route>
 
-                <Route exact path="/form">
-                    <CheckboxForm />
-                </Route>
-
-                <Route exact path="/recipients/edit/recipient/:recipientId(\d+)">
-                    {/* <EditRecip /> */}
+                <Route exact path="/recipients/edit/:recipientId(\d+)">
+                    <EditRecipient />
                 </Route>
             </main>
-        </>
+        </div>
     );
 };

@@ -49,7 +49,7 @@ export const EditNavBar = () => {
                         {recipients.map(recipient => {
                             return <NavItem key={`recipient--${recipient.id}`}>
                                 <NavText key={`recipient-${recipient.id}`}>{recipient.name}
-                                <button onClick={() => history.push(`/recipients/edit/recipient/${recipient.id}`)}> Edit </button>
+                                <button onClick={() => history.push(`/recipients/edit/${recipient.id}`)}> Edit </button>
                                 <button onClick={() => { deleteRecipient(recipient.id) }}>Delete</button></NavText>
                             </NavItem>
                         })}

@@ -4,7 +4,7 @@ import { RecipientContext } from "./RecipientManager"
 
 
 export const RecipientList = () => {
-    const {recipients, setRecipients, getRecipients, deleteRecipients} = useContext(RecipientContext)
+    const {recipients, setRecipients, getRecipients, deleteRecipients, updateRecipient } = useContext(RecipientContext)
     const history = useHistory()
     
     useEffect(

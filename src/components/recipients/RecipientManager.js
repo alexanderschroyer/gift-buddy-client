@@ -27,11 +27,29 @@ export const RecipientProvider = (props) => {
         .then(getRecipients)
     }
 
+    const updateRecipient = (recipientId, name, interests) => {
+
+        const fetchOption = {
+            method: "PUT",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                interests: interests
+            })
+        }
+
+        return fetch(`http://localhost:8000/recipients/${recipientId}`, fetchOption)
+            .then(() => {history.push(`/`)})
+    }
+
 
 
     return (
         <RecipientContext.Provider value={{
-            recipients, setRecipients, getRecipients, deleteRecipient
+            recipients, setRecipients, getRecipients, deleteRecipient, updateRecipient
         }}>
             {props.children}
         </RecipientContext.Provider>
