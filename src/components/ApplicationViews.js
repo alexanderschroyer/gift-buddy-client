@@ -6,6 +6,8 @@ import { EditRecipient } from "./recipients/EditRecipient";
 import { RecipientForm } from "./recipients/NewRecipientForm";
 import { RecipientList } from "./recipients/RecipientList";
 import "./ApplicationViews.css"
+import { SearchInterests } from "./interests/SearchInterestList";
+import { CreateInterest } from "./interests/CreateInterest";
 
 export const ApplicationViews = () => {
     return (
@@ -22,6 +24,14 @@ export const ApplicationViews = () => {
 
                 <Route exact path="/recipient/interests">
                     <Interests />
+                </Route>
+
+                <Route exact path="/recipient/searchinterests">
+                    <SearchInterests />
+                </Route>
+
+                <Route exact path="/interest/new">
+                    <CreateInterest />
                 </Route>
 
                 <Route exact path="/recipient/form">
