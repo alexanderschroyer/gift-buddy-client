@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 // Be sure to include styles at some point, probably during your bootstrapping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
@@ -47,7 +47,8 @@ export const NavBar = () => {
                     </NavText>
                         {recipients.map(recipient => {
                             return <NavItem key={`recipient--${recipient.id}`}>
-                                <NavText key={`recipient-${recipient.id}`}>{recipient.name}</NavText>
+                                <NavText key={`recipient-${recipient.id}`}>
+                                    <Link to={`/recipients/${recipient.id}`}> {recipient.name} </Link></NavText>
                             </NavItem>
                         })}
                     <NavItem eventKey="charts/linechart">

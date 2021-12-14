@@ -38,6 +38,10 @@ export const ApplicationViews = () => {
                     <RecipientForm />
                 </Route>
 
+                <Route exact path="/recipients/:recipientId(\d+)">
+                    <RecipientList />
+                </Route>
+
                 <Route exact path="/recipients/edit/:recipientId(\d+)">
                     <EditRecipient />
                 </Route>
