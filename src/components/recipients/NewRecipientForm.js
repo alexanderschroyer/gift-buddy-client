@@ -55,21 +55,6 @@ export const RecipientForm = () => {
         })
     }
 
-    // const getSelected = () => {
-    //     let selected = new Array()
-    //     const interestCheck = document.getElementById("interest__check")
-    //     // const checks = interestCheck.getElementsByTagName("INPUT")
-
-    //     for (var i = 0; i < checks.length; i++) {
-    //         if (checks[i].checked) {
-    //             selected.push(checks[i].value)
-    //         }
-    //     }
-    //     if (selected.length > 0) {
-    //         return selected
-    //     }
-    // }
-
     return (
         <>
             <div className="new__recipient__form">
