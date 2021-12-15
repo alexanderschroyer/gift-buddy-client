@@ -8,21 +8,28 @@ export const EditRecipient = () => {
         name: ""
     })
     const [interests, setInterests] = useState([])
-    const {updateRecipient} = useContext(RecipientContext)
-    const {recipientId} = useParams()
+    const { updateRecipient } = useContext(RecipientContext)
+    const { recipientId } = useParams()
     const history = useHistory()
+    const [selectedRecipientInterests, setSelectedRecipientInterests] = useState([])
 
     useEffect(
         () => {
-            return fetch(`http://localhost:8000/recipients/${recipientId}`,  {
+            return fetch(`http://localhost:8000/recipients/${recipientId}`, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
                 }
             })
-            .then(response => response.json())
-            .then((data) => {
-                setRecipient(data)
-            })
+                .then(response => response.json())
+                .then((data) => {
+                    setRecipient(data)
+                    const copy = [...selectedRecipientInterests]
+                    for (const selectedInterest of data.interests) {
+                        copy.push(selectedInterest.id)
+                    }
+                    setSelectedRecipientInterests(copy)
+                    console.log(selectedRecipientInterests)
+                })
         },
         [recipientId]
     )
@@ -32,8 +39,8 @@ export const EditRecipient = () => {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
         })
-        .then(res => res.json())
-        .then(setInterests)
+            .then(res => res.json())
+            .then(setInterests)
     }
 
     useEffect(
@@ -42,7 +49,21 @@ export const EditRecipient = () => {
         },
         []
     )
-    
+
+    const handleInputChange = (event) => {
+        const target = event.target;
+        var value = target.value;
+        if (target.checked) {
+            const copy = [...selectedRecipientInterests]
+            copy.push(parseInt(value))
+            setSelectedRecipientInterests(copy)
+        } else {
+            const copy = [...selectedRecipientInterests]
+            let index = copy.indexOf(parseInt(value))
+            copy.splice(index, 1);
+            setSelectedRecipientInterests(copy)
+        }
+    }
 
     return (
         <>
@@ -53,9 +74,9 @@ export const EditRecipient = () => {
                         <fieldset>
                             <div>
                                 <input
-                                    onChange = {
+                                    onChange={
                                         (event) => {
-                                            const copy = {...recipient}
+                                            const copy = { ...recipient }
                                             copy.name = event.target.value
                                             setRecipient(copy)
                                         }
@@ -64,20 +85,35 @@ export const EditRecipient = () => {
                                     type="textarea"
                                     className="form-control"
                                     defaultValue={recipient.name}
-                                    />
+                                />
                             </div>
                         </fieldset>
                         <fieldset>
                             <div>
-                            {interests.map(interest => (<>
-                            <label id="interest_id" name="interest_id" value={interest.id}> {interest.label} </label>
-                            <input type="checkbox" name="interest_id" value={`${interest.id}`}
-                                checked={recipient.interests}
-                                defaultValue={recipient.interests}
-                                onChange={ (event) => {
-                                    // handleInputChange(event)
-                                    }}></input>
-                            </>))}
+                                {interests?.map(interest => {
+                                    if (selectedRecipientInterests.includes(interest.id)) {
+                                        return (<>
+                                            <label id="interest_id" name="interest_id" value={interest.id}> {interest.label} </label>
+                                            <input type="checkbox" name="interest_id" value={`${interest.id}`}
+                                                checked
+                                                defaultValue={recipient.interests}
+                                                onChange={(event) => {
+                                                    handleInputChange(event)
+                                                }}></input>
+                                        </>)
+                                    } else {
+                                        return (<>
+                                            <label id="interest_id" name="interest_id" value={interest.id}> {interest.label} </label>
+                                            <input type="checkbox" name="interest_id" value={`${interest.id}`}
+                                                // checked
+                                                defaultValue={recipient.interests}
+                                                onChange={(event) => {
+                                                    handleInputChange(event)
+                                                }}></input>
+                                        </>)
+
+                                    }
+                                })}
                             </div>
                         </fieldset>
                         <button className="editRecipient" onClick={() => { history.push("/recipients/edit/list") }}>
