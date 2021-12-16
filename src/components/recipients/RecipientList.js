@@ -1,21 +1,28 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router"
+import { Link } from "react-router-dom"
 import { useParams } from "react-router-dom/cjs/react-router-dom.min"
 import { RecipientContext } from "./RecipientManager"
+import "./RecipientList.css"
 
 
 export const RecipientList = () => {
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState([''])
     const [interests, setInterests] = useState([])
     const [recipientInterests, setRecipientInterests] = useState([])
     const [recipient, setRecipient] = useState({})
+    const [searchResults, setSearchResults] = useState([])
     const { recipients, setRecipients, getRecipients, deleteRecipients, updateRecipient } = useContext(RecipientContext)
     const history = useHistory()
 
     const searchStuff = (query) => {
-        debugger
-        return fetch(`https://serpapi.com/search.json?engine=google&q=${query}&api_key=182cb978ab8751d5eaefdb9cd92a86225572b2fc62c2e8c7fe818d8fb78485bb`)
+        return fetch(`http://localhost:8000/search?q=${query}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
+            }
+        })
             .then(res => res.json())
+            .then((data) => setSearchResults(data))
             
     }
 
@@ -84,7 +91,7 @@ export const RecipientList = () => {
 
     return (
         <>
-            <div style={{ margin: "0rem 3rem" }}>
+            <div className="search__flex" style={{ margin: "0rem 3rem" }}>
                 <a className="recipient__list">
                     {recipient.name}
                     {recipient.interests?.interest?.label}
@@ -112,11 +119,22 @@ export const RecipientList = () => {
                                 autoFocus
                                 className="form-control"
                                 value={recint.interest.label}></input>
-                                <input value={recint.interest.label} type="text" onChange={q => setQuery(q.target.value)} />
-                                <button onClick={() => searchStuff(query)}>Search</button>
+                                <input id={`input-${recint.interest.id}`} value={recint.interest.label} type="text" onChange={event => setQuery(event.target.value)} />
+                                <button id={recint.interest.id} onClick={(event) => searchStuff(query != "" ? query : document.getElementById(`input-${event.target.id}`).value)}>Search</button>
                             </div> </div>
-
                     })}
+                </div>
+                <div>
+                    <h3>
+                        {searchResults?.shopping_results?.map(result => {
+                            return <div id="search__right">
+                                <Link to={result.product_link}>{result.product_link}</Link>
+                                <a>{result.price}</a>
+                                <img className="search__img" src={result.thumbnail}/>
+                                </div>
+                            
+                        })}
+                    </h3>
                 </div>
             </div>
         </>

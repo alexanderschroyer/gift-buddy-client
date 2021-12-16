@@ -1,0 +1,19 @@
+#search__right {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-left: 6rem;
+}
+
+.search__flex {
+    border: 2px solid black;
+    display: flex;
+    /* margin-right: 100rem; */
+}
+
+.search__img {
+    border: 2px solid black;
+    height: 150px;
+    width: 150px;
+}
