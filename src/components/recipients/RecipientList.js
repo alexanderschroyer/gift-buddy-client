@@ -23,7 +23,7 @@ export const RecipientList = () => {
         })
             .then(res => res.json())
             .then((data) => setSearchResults(data))
-            
+
     }
 
     const currentUser = () => {
@@ -91,8 +91,8 @@ export const RecipientList = () => {
 
     return (
         <>
-            <div className="search__flex" style={{ margin: "0rem 3rem" }}>
-                <a className="recipient__list">
+            <div className="result__container" style={{ margin: "0rem 3rem" }}>
+                {/* <a className="recipient__list">
                     {recipient.name}
                     {recipient.interests?.interest?.label}
                     {recipients.map(recipient => {
@@ -110,29 +110,29 @@ export const RecipientList = () => {
                             <div></div>
                         </div>
                     })}
-                </a>
-                <div>
+                </a> */}
+                <div className="search__flex">
+                    {recipient.name}
                     {recipientInterests.map(recint => {
                         if (recipient.id === recint.recipient.id)
-                            return <div> <div>{recint.recipient.name} <input type="text" name="interest"
-                                required
-                                autoFocus
-                                className="form-control"
-                                value={recint.interest.label}></input>
-                                <input id={`input-${recint.interest.id}`} value={recint.interest.label} type="text" onChange={event => setQuery(event.target.value)} />
-                                <button id={recint.interest.id} onClick={(event) => searchStuff(query != "" ? query : document.getElementById(`input-${event.target.id}`).value)}>Search</button>
-                            </div> </div>
+                            return <div>
+                                <div>
+                                    <input id={`input-${recint.interest.id}`} value={recint.interest.label} type="text" onChange={event => setQuery(event.target.value)} />
+                                    <button id={recint.interest.id} onClick={(event) => searchStuff(query != "" ? query : document.getElementById(`input-${event.target.id}`).value).then(getRecipientInterests())}>Search</button>
+                                </div>
+                            </div>
                     })}
                 </div>
                 <div>
                     <h3>
                         {searchResults?.shopping_results?.map(result => {
                             return <div id="search__right">
-                                <Link to={result.product_link}>{result.product_link}</Link>
+                                <a className="search__title">{result.title}</a>
+                                <Link className="search__link" to={result.product_link}>{result.product_link}</Link>
                                 <a>{result.price}</a>
-                                <img className="search__img" src={result.thumbnail}/>
-                                </div>
-                            
+                                <img className="search__img" src={result.thumbnail} />
+                            </div>
+
                         })}
                     </h3>
                 </div>

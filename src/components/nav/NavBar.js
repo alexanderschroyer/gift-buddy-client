@@ -53,13 +53,11 @@ export const NavBar = () => {
                         })}
                     <NavItem eventKey="charts/linechart">
                         <NavText>
-                            Line Chart
                         </NavText>
                     </NavItem>
 
                     <NavItem eventKey="charts/barchart">
                         <NavText>
-                            Bar Chart
                     <NavItem>
                     <button onClick={() => history.push(`/recipients/edit/list`)}> Edit </button>
                 </NavItem> 
