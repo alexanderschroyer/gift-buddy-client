@@ -120,7 +120,7 @@ export const RecipientList = () => {
                         {searchResults?.shopping_results?.map(result => {
                             return <div id="search__right">
                                 <a className="search__title">{result.title}</a>
-                                <a className="search__link" target="_blank" to={result.product_link}>{result.product_link}</a>
+                                <a className="search__link" target="_blank" href={result.product_link}>{result.product_link}</a>
                                 <a>{result.price}</a>
                                 <img className="search__img" src={result.thumbnail} />
                             </div>
