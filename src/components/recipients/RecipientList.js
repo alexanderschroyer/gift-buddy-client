@@ -37,13 +37,6 @@ export const RecipientList = () => {
     }
     const { recipientId, interestId } = useParams()
 
-
-    useEffect(
-        () => {
-            getRecipients()
-        },
-        []
-    )
     const getInterests = () => {
         return fetch(`https://gift-buddy-server.herokuapp.com/interests`, {
             headers: {
@@ -73,12 +66,12 @@ export const RecipientList = () => {
         })
     }
 
-    // useEffect(
-    //     () => {
-    //         getInterests()
-    //     },
-    //     []
-    // )
+    useEffect(
+        () => {
+            getRecipients()
+        },
+        []
+    )
 
     useEffect(
         () => {
@@ -86,11 +79,12 @@ export const RecipientList = () => {
         },
         []
     )
+
     useEffect(
         () => {
             getRecipient()
         },
-        []
+        [recipientId]
     )
 
 
@@ -132,3 +126,7 @@ export const RecipientList = () => {
         </>
     )
 }
+
+// readme on server send
+// rerender
+// 

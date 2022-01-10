@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useHistory } from "react-router"
 import "./NewRecipientForm.css"
+import { RecipientContext } from "./RecipientManager"
 
 export const RecipientForm = () => {
+    const { getRecipients } = useContext(RecipientContext)
     const [interests, setInterests] = useState([])
     const history = useHistory()
 
@@ -89,6 +91,7 @@ export const RecipientForm = () => {
 
                             createRecipient(currentRecipient)
                                 .then(() => history.push("/recipients"))
+                                .then(() => getRecipients())
                         }}
                         className="btn btn-primary">Create</button>
                 </form>
