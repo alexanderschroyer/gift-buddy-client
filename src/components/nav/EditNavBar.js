@@ -45,9 +45,9 @@ export const EditNavBar = () => {
                     <NavIcon>
 
                     </NavIcon>
-                    {/* <NavText>
-                        Buddies
-                    </NavText> */}
+                    <NavText>
+                        Add Buddy
+                    </NavText>
                     <NavText>
                         {recipients.map(recipient => {
                             return <NavItem key={`recipient--${recipient.id}`}>
