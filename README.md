@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# Gift Buddy Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Gift Buddy is an application with anyone that struggles to come up with gift ideas. This app allows you to create recipients and add pre-made interest as well as custom interests throughtout the year. Each interest can then be searched which displays the search results.
 
-## Available Scripts
+## Local Setup
 
-In the project directory, you can run:
+1. Clone this repository and change to the directory in the terminal.
+2. Run 'npm install' in the main directory
+3. Ensure your server is running
+4. Run 'npm start'
 
-### `npm start`
+### Gift Buddy ERD
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://drawsql.app/nss-4/diagrams/gift-buddy#
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Gift Buddy Moqup
 
-### `npm test`
+https://app.moqups.com/wTguXyETSOHfi49OvlDWONsZC1yutxmQ/edit/page/ad64222d5
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Documentation
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Select register new user then create a buddy with some stock interests that that buddy likes.
+2. Select edit in the nav bar under buddies and then edit the buddy. You can add custom interests here anytime they drop a clue in casual conversation etc.
+3. Then select your buddy and search to see gift ideas for the selected interest.
