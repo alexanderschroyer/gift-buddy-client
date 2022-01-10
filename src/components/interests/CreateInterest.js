@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import { RecipientContext } from "../recipients/RecipientManager"
-
+import "./CreateInterest.css"
 
 
 export const CreateInterest = () => {
