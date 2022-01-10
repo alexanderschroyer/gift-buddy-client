@@ -7,7 +7,7 @@ export const RecipientForm = () => {
     const history = useHistory()
 
     const getInterests = () => {
-        return fetch(`http://localhost:8000/interests`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests`, {
             headers: {"Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`}
         })
         .then(res => res.json())
@@ -45,7 +45,7 @@ export const RecipientForm = () => {
     }
 
     const createRecipient = (currentRecipient) => {
-        return fetch("http://localhost:8000/recipients", {
+        return fetch("https://gift-buddy-server.herokuapp.com/recipients", {
             method: "POST",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`,

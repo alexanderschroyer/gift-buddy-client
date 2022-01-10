@@ -16,7 +16,7 @@ export const RecipientList = () => {
     const history = useHistory()
 
     const searchStuff = (query) => {
-        return fetch(`http://localhost:8000/search?q=${query}`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/search?q=${query}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -27,7 +27,7 @@ export const RecipientList = () => {
     }
 
     const getRecipient = () => {
-        return fetch(`http://localhost:8000/recipients/${recipientId}`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/recipients/${recipientId}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -45,7 +45,7 @@ export const RecipientList = () => {
         []
     )
     const getInterests = () => {
-        return fetch(`http://localhost:8000/interests`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -55,7 +55,7 @@ export const RecipientList = () => {
     }
 
     const getRecipientInterests = () => {
-        return fetch(`http://localhost:8000/recipientinterests`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/recipientinterests`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -65,7 +65,7 @@ export const RecipientList = () => {
     }
 
     const deleteInterest = (interestId) => {
-        return fetch(`http://localhost:8000/interests/${interestId}`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests/${interestId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`

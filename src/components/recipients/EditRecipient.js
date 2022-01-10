@@ -16,7 +16,7 @@ export const EditRecipient = () => {
 
     useEffect(
         () => {
-            return fetch(`http://localhost:8000/recipients/${recipientId}`, {
+            return fetch(`https://gift-buddy-server.herokuapp.com/recipients/${recipientId}`, {
                 headers: {
                     "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
                 }
@@ -35,7 +35,7 @@ export const EditRecipient = () => {
         [recipientId]
     )
     const getInterests = () => {
-        return fetch(`http://localhost:8000/interests`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }

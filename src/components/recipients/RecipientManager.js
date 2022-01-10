@@ -8,7 +8,7 @@ export const RecipientProvider = (props) => {
     const history = useHistory()
 
     const getRecipients = () => {
-        return fetch(`http://localhost:8000/recipients/currentuser`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/recipients/currentuser`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -18,7 +18,7 @@ export const RecipientProvider = (props) => {
     }
 
     const deleteRecipient = (id) => {
-        return fetch(`http://localhost:8000/recipients/${id}`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/recipients/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
@@ -41,7 +41,7 @@ export const RecipientProvider = (props) => {
             })
         }
 
-        return fetch(`http://localhost:8000/recipients/${recipientId}`, fetchOption)
+        return fetch(`https://gift-buddy-server.herokuapp.com/recipients/${recipientId}`, fetchOption)
             .then(() => {history.push(`/`)})
     }
 

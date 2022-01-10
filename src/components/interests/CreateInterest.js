@@ -12,7 +12,7 @@ export const CreateInterest = () => {
     const history = useHistory()
     const { recipientId } = useParams()
     const getInterests = () => {
-        return fetch(`http://localhost:8000/interests`, {
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
@@ -34,7 +34,7 @@ export const CreateInterest = () => {
             },
             body: JSON.stringify(interestData)
         }
-        return fetch(`http://localhost:8000/interests`, fetchOption)
+        return fetch(`https://gift-buddy-server.herokuapp.com/interests`, fetchOption)
         .then(() => {getInterests()})
         .then(() => history.push(`/recipients/edit/${recipientId}`))
     }
