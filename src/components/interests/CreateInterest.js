@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react"
+import { useParams, useHistory } from "react-router-dom"
 import { RecipientContext } from "../recipients/RecipientManager"
 
 
@@ -8,7 +9,8 @@ export const CreateInterest = () => {
         label: ""
     })
     const { recipients, setRecipients, getRecipients } = useContext(RecipientContext)
-
+    const history = useHistory()
+    const { recipientId } = useParams()
     const getInterests = () => {
         return fetch(`http://localhost:8000/interests`, {
             headers: {
@@ -17,24 +19,28 @@ export const CreateInterest = () => {
         })
     }
 
-    const saveNewInterest = (event) => {
-        event.preventDefault()
+        const saveNewInterest = (event) => {
+            event.preventDefault()
 
-        const interestData = {
-            label: newInterest.label
-        }
+            const interestData = {
+                label: newInterest.label
+            }
 
-        const fetchOption = {
-            method: "POST",
-            headers: {
-                "Authorization":`Token ${localStorage.getItem("gift_buddy_token")}`,
-                "Content-Type": "application/json"
+            const fetchOption = {
+                method: "POST",
+                headers: {
+                    "Authorization":`Token ${localStorage.getItem("gift_buddy_token")}`,
+                    "Content-Type": "application/json"
             },
             body: JSON.stringify(interestData)
-            }
-            return fetch(`http://localhost:8000/interests`, fetchOption)
-            .then(() => {getInterests()})
         }
+        return fetch(`http://localhost:8000/interests`, fetchOption)
+        .then(() => {getInterests()})
+        .then(() => history.push(`/recipients/edit/${recipientId}`))
+    }
+
+        
+
 
         return (
             <>

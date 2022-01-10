@@ -2,6 +2,7 @@ import { CompilerDeprecationTypes } from "@vue/compiler-core";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import { RecipientContext } from "./RecipientManager";
+import "./EditRecipient.css"
 
 export const EditRecipient = () => {
     const [recipient, setRecipient] = useState({
@@ -68,7 +69,7 @@ export const EditRecipient = () => {
     return (
         <>
             <section>
-                <div>
+                <div className="edit__recipient">
                     <h2>Edit Recipient</h2>
                     <form>
                         <fieldset>
@@ -105,7 +106,6 @@ export const EditRecipient = () => {
                                         return (<>
                                             <label id="interest_id" name="interest_id" value={interest.id}> {interest.label} </label>
                                             <input type="checkbox" name="interest_id" value={`${interest.id}`}
-                                                // checked
                                                 defaultValue={recipient.interests}
                                                 onChange={(event) => {
                                                     handleInputChange(event)
@@ -115,11 +115,14 @@ export const EditRecipient = () => {
                                     }
                                 })}
                             </div>
+                            <div>
+                            <button onClick={() => history.push(`/interest/new/${recipientId}`)}> Add Custom Interest </button>
+                            </div>
                         </fieldset>
                         <button className="editRecipient" onClick={() => { history.push("/recipients/edit/list") }}>
                             Cancel
                         </button>
-                        <button className="updateRecipient" onClick={(event) => { event.preventDefault(); updateRecipient(recipientId, recipient.name) }}>
+                        <button className="updateRecipient" onClick={(event) => { event.preventDefault(); updateRecipient(recipientId, recipient.name, selectedRecipientInterests) }}>
                             Update
                         </button>
                     </form>

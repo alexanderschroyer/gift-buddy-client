@@ -26,10 +26,6 @@ export const RecipientList = () => {
 
     }
 
-    const currentUser = () => {
-        return localStorage.getItem("gift_buddy_token")
-    }
-
     const getRecipient = () => {
         return fetch(`http://localhost:8000/recipients/${recipientId}`, {
             headers: {
@@ -37,9 +33,9 @@ export const RecipientList = () => {
             }
         })
             .then(res => res.json())
-            .then(setRecipient)
+            .then((data) => setRecipient(data))
     }
-    const { recipientId } = useParams()
+    const { recipientId, interestId } = useParams()
 
 
     useEffect(
@@ -68,12 +64,21 @@ export const RecipientList = () => {
             .then(setRecipientInterests)
     }
 
-    useEffect(
-        () => {
-            getInterests()
-        },
-        []
-    )
+    const deleteInterest = (interestId) => {
+        return fetch(`http://localhost:8000/interests/${interestId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
+            }
+        })
+    }
+
+    // useEffect(
+    //     () => {
+    //         getInterests()
+    //     },
+    //     []
+    // )
 
     useEffect(
         () => {
@@ -92,33 +97,20 @@ export const RecipientList = () => {
     return (
         <>
             <div className="result__container" style={{ margin: "0rem 3rem" }}>
-                {/* <a className="recipient__list">
-                    {recipient.name}
-                    {recipient.interests?.interest?.label}
-                    {recipients.map(recipient => {
-                        return <div>
-                            <div> {interests.map(interest => {
-                                if (recipient.gifterId === parseInt(currentUser)) {
-                                    return <div> </div>
-                                } else {
-
-                                }
-                            }
-
-
-                            )} </div>
-                            <div></div>
-                        </div>
-                    })}
-                </a> */}
                 <div className="search__flex">
                     {recipient.name}
                     {recipientInterests.map(recint => {
                         if (recipient.id === recint.recipient.id)
                             return <div>
                                 <div>
-                                    <input id={`input-${recint.interest.id}`} value={recint.interest.label} type="text" onChange={event => setQuery(event.target.value)} />
+                                    {/* <p id={`input-${recint.interest.id}`} value={recint.interest.label}>{recint.interest.label} </p> */}
+                                    <input disabled id={`input-${recint.interest.id}`} value={recint.interest.label} type="text" onChange={event => setQuery(event.target.value)} />
                                     <button id={recint.interest.id} onClick={(event) => searchStuff(query != "" ? query : document.getElementById(`input-${event.target.id}`).value).then(getRecipientInterests())}>Search</button>
+                                </div>
+                                <div>
+                                    <button className="delete__interest"
+                                        onClick={() => deleteInterest(recint.interest.id).then(() => getRecipient())}
+                                    >Delete</button>
                                 </div>
                             </div>
                     })}

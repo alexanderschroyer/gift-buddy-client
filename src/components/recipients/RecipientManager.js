@@ -8,13 +8,13 @@ export const RecipientProvider = (props) => {
     const history = useHistory()
 
     const getRecipients = () => {
-        return fetch(`http://localhost:8000/recipients`, {
+        return fetch(`http://localhost:8000/recipients/currentuser`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("gift_buddy_token")}`
             }
         })
         .then(res => res.json())
-        .then(setRecipients)
+        .then((data) => setRecipients(data))
     }
 
     const deleteRecipient = (id) => {

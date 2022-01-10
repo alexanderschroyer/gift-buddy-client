@@ -4,6 +4,7 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 // Be sure to include styles at some point, probably during your bootstrapping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { RecipientContext } from "../recipients/RecipientManager";
+import "./NavBar.css"
 
 export const NavBar = () => {
     const { recipients, setRecipients, getRecipients, deleteRecipient } = useContext(RecipientContext)
@@ -18,10 +19,11 @@ export const NavBar = () => {
 
 
     return (
-        <SideNav
+        <SideNav className="SideNav"
+            expanded="True"
             onSelect={(selected) => {
                 // Add your code here
-                if(selected === "home"){
+                if (selected === "home") {
                     history.push("/")
                 }
             }}
@@ -29,8 +31,8 @@ export const NavBar = () => {
             <SideNav.Toggle />
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
-                    <NavIcon>
-                        <span class="material-icons" style={{ fontSize: '1.75em' }} > home
+                    <NavIcon className="material">
+                        <span class="material-icons" style={{ fontSize: '1.75em' }}> home
                         </span>
                     </NavIcon>
                     <NavText>
@@ -39,29 +41,33 @@ export const NavBar = () => {
                 </NavItem>
 
                 <NavItem eventKey="recipients">
-                    <NavIcon>
-                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                    <NavIcon className="material">
+                        <span class="material-icons"> people
+                        </span>
                     </NavIcon>
                     <NavText>
                         Buddies
                     </NavText>
-                        {recipients.map(recipient => {
-                            return <NavItem key={`recipient--${recipient.id}`}>
-                                <NavText key={`recipient-${recipient.id}`}>
-                                    <Link to={`/recipients/${recipient.id}`}> {recipient.name} </Link></NavText>
-                            </NavItem>
-                        })}
-                    <NavItem eventKey="charts/linechart">
-                        <NavText>
-                        </NavText>
-                    </NavItem>
-
-                    <NavItem eventKey="charts/barchart">
-                        <NavText>
+                    {recipients.map(recipient => {
+                        return <NavItem key={`recipient--${recipient.id}`}>
+                            <NavText key={`recipient-${recipient.id}`}>
+                                <Link to={`/recipients/${recipient.id}`}> {recipient.name} </Link></NavText>
+                        </NavItem>
+                    })}
                     <NavItem>
-                    <button onClick={() => history.push(`/recipients/edit/list`)}> Edit </button>
-                </NavItem> 
-                {/* set state variable = true edit button sets from false to true
+                        <NavText>
+                            <NavItem>
+                                <button onClick={() => history.push(`/recipients/edit/list`)}> Edit </button>
+                            </NavItem>
+                            <a onClick={() => {
+                                localStorage.clear()
+                                history.push("/login")
+                            }}>
+                                <NavItem className="logout" eventKey="logout">
+                                    <NavText><button>Logout</button></NavText>
+                                </NavItem>
+                            </a>
+                            {/* set state variable = true edit button sets from false to true
                 
                 ternary at top wraps nav bar if true render edit nav bar if false render this navbar*/}
                         </NavText>

@@ -30,7 +30,7 @@ export const ApplicationViews = () => {
                     <SearchInterests />
                 </Route>
 
-                <Route exact path="/interest/new">
+                <Route exact path="/interest/new/:recipientId(\d+)">
                     <CreateInterest />
                 </Route>
 

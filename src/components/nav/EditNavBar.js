@@ -4,6 +4,8 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 // Be sure to include styles at some point, probably during your bootstrapping
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import { RecipientContext } from "../recipients/RecipientManager";
+import "./NavBar.css"
+
 
 export const EditNavBar = () => {
     const { recipients, setRecipients, getRecipients, deleteRecipient } = useContext(RecipientContext)
@@ -18,8 +20,7 @@ export const EditNavBar = () => {
 
 
     return (
-        <div className="SideNav">
-        <SideNav
+        <SideNav className="SideNav"
         expanded="True"
             onSelect={(selected) => {
                 // Add your code here
@@ -32,7 +33,8 @@ export const EditNavBar = () => {
             <SideNav.Nav defaultSelected="home">
                 <NavItem eventKey="home">
                     <NavIcon>
-                        <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                        <span class="material-icons" style={{ fontSize: '1.75em' }} > home
+                        </span>   
                     </NavIcon>
                     <NavText>
                         Home
@@ -41,11 +43,12 @@ export const EditNavBar = () => {
 
                 <NavItem eventKey="recipients">
                     <NavIcon>
-                        <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+
                     </NavIcon>
-                    <NavText>
+                    {/* <NavText>
                         Buddies
-                    </NavText>
+                    </NavText> */}
+                    <NavText>
                         {recipients.map(recipient => {
                             return <NavItem key={`recipient--${recipient.id}`}>
                                 <NavText key={`recipient-${recipient.id}`}>{recipient.name}
@@ -53,12 +56,7 @@ export const EditNavBar = () => {
                                 <button onClick={() => { deleteRecipient(recipient.id) }}>Delete</button></NavText>
                             </NavItem>
                         })}
-                    <NavItem eventKey="charts/linechart">
-                        <NavText>
-                            Line Chart
                         </NavText>
-                    </NavItem>
-
                     <NavItem eventKey="recipient/form">
                         <NavText>
                         <button onClick={() => history.push(`/recipient/form`)}>Create Buddy</button>
@@ -67,6 +65,5 @@ export const EditNavBar = () => {
                 </NavItem>
             </SideNav.Nav>
         </SideNav>
-        </div>
     );
 };
