@@ -1,4 +1,4 @@
-# Gift Buddy API
+# Gift Buddy Client
 
 Gift Buddy is an application made to allow a user to create recipients/buddies which they can then add interests and gift ideas they are told, or casually picked up in conversation. The user can then search gift ideas and see a google shopping results they can navigate.
 
